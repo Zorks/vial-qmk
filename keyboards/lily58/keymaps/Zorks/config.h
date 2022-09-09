@@ -46,9 +46,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define RGBLIGHT_VAL_STEP 6 // number of steps to increment the brightness by
 #    define RGBLIGHT_SLEEP //  the RGB lighting will be switched off when the host goes to sleep
 #	 define RGBLIGHT_LAYERS // use LEDs as status indicators to show which keyboard layer is currently active, or the state of caps lock, all without disrupting any animation
+#	 define RGBLIGHT_MAX_LAYERS 4 //how many layers 
 #endif
 
 #define TAPPING_TERM 170  // max allowable time between taps in milliseconds
 
-#define NO_MUSIC_MODE
+
 #define DYNAMIC_KEYMAP_LAYER_COUNT 3
+
+// a little space saving
+#define VIAL_TAP_DANCE_ENTRIES 2
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+#define NO_MUSIC_MODE
+#define NO_ACTION_ONESHOT
+#define LAYER_STATE_8BIT
