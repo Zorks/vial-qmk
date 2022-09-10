@@ -50,14 +50,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define TAPPING_TERM 170  // max allowable time between taps in milliseconds
-
+#define TAPPING_TOGGLE 2
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 3
 
 // a little space saving
-#define VIAL_TAP_DANCE_ENTRIES 2
+#define VIAL_TAP_DANCE_ENTRIES 8
 #undef LOCKING_SUPPORT_ENABLE
 #undef LOCKING_RESYNC_ENABLE
 #define NO_MUSIC_MODE
 #define NO_ACTION_ONESHOT
 #define LAYER_STATE_8BIT
+#define DISABLE_LEADER
+
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif // !NO_PRINT
