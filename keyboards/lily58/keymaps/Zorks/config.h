@@ -33,25 +33,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIAL_UNLOCK_COMBO_ROWS {4, 9}
 #define VIAL_UNLOCK_COMBO_COLS {4, 4}
 
-#ifdef RGBLIGHT_ENABLE
-// #    define RGBLIGHT_ANIMATIONS // individually definining animations to save a little space
-// #    define RGBLIGHT_EFFECT_BREATHING
-// #    define RGBLIGHT_EFFECT_KNIGHT
-// #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
-// #    define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-// #    define RGBLIGHT_EFFECT_STATIC_GRADIENT
-// #    define RGBLIGHT_EFFECT_TWINKLE
-#    define RGBLIGHT_HUE_STEP 6 // number of steps to cycle through the hue by
-#    define RGBLIGHT_SAT_STEP 6 // number of steps to increment the saturation by
-#    define RGBLIGHT_VAL_STEP 6 // number of steps to increment the brightness by
-#    define RGBLIGHT_SLEEP //  the RGB lighting will be switched off when the host goes to sleep
-#	 define RGBLIGHT_LAYERS // use LEDs as status indicators to show which keyboard layer is currently active, or the state of caps lock, all without disrupting any animation
-#	 define RGBLIGHT_MAX_LAYERS 4 //how many layers 
+/* ws2812 RGB MATRIX LED */
+#ifdef RGB_MATRIX_ENABLE
+#	 define DRIVER_LED_TOTAL 70 // Number of LEDs for Lily58 Light
+#	 define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 // Sane brightness values so the board has enough power to operate
+# 	 define RGB_MATRIX_STARTUP_VAL 120
+#	 define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#	 define RGB_MATRIX_KEYPRESSES
+#    define RGB_MATRIX_SPLIT { 35, 35 }
+#    define RGB_DISABLE_WHEN_USB_SUSPENDED true
+#    define RGBLIGHT_SLEEP
+#    define RGB_MATRIX_LED_PROCESS_LIMIT (DRIVER_LED_TOTAL + 4) / 5 // max leds processed per animation task
+#    define RGB_MATRIX_LED_FLUSH_LIMIT 16 // LEDs refresh rate max. 60fps
+#    define RGB_MATRIX_HUE_STEP 4
+#    define RGB_MATRIX_SAT_STEP 4
+#    define RGB_MATRIX_VAL_STEP 3
+#    define RGB_MATRIX_SPD_STEP 6
+#	 define RGB_MATRIX_STARTUP_SPD 10 //animation speed
+#	 define VIALRGB_NO_DIRECT
+#	 undef RGBLIGHT_ANIMATIONS
+# 	 define SPLIT_TRANSPORT_MIRROR  	 // This mirrors the master side matrix to the slave side for features that react or require knowledge of master side key presses on the slave side
+#	 define SPLIT_LAYER_STATE_ENABLE    	 // enables syncing of the layer state between both halves of the split keyboard
+#	 define SPLIT_LED_STATE_ENABLE 			 // enables syncing of the Host LED status (caps lock, num lock, etc) between both halves of the split keyboard
+#	 define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE //simple animation set as default so layer indicators will work
+// Effects enabled
+#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
+#	 define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE  // Pulses keys hit to hue & value then fades value out
+#	 define ENABLE_RGB_MATRIX_SOLID_REACTIVE      // Static single hue, pulses keys hit to shifted hue then fades to current hue
+#	 define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE // Hue & value pulse near multiple key hits then fades value out
 #endif
 
-#define TAPPING_TERM 170  // max allowable time between taps in milliseconds
+#define TAPPING_TERM 180  // max allowable time between taps in milliseconds
 #define TAPPING_TOGGLE 2
-
 #define DYNAMIC_KEYMAP_LAYER_COUNT 3
 
 // a little space saving
@@ -61,11 +74,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_MUSIC_MODE
 #define NO_ACTION_ONESHOT
 #define LAYER_STATE_8BIT
-#define DISABLE_LEADER
 
-#ifndef NO_DEBUG
-#define NO_DEBUG
-#endif // !NO_DEBUG
-#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
-#define NO_PRINT
-#endif // !NO_PRINT
+
