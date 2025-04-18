@@ -35,12 +35,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* ws2812 RGB MATRIX LED */
 #ifdef RGB_MATRIX_ENABLE
-#	 define DRIVER_LED_TOTAL 70 // Number of LEDs for Lily58 Light
+#	 define DRIVER_LED_TOTAL 64 // Number of LEDs for Lily58 Light - missing underglow on left
 #	 define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120 // Sane brightness values so the board has enough power to operate
 # 	 define RGB_MATRIX_STARTUP_VAL 120
 #	 define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #	 define RGB_MATRIX_KEYPRESSES
-#    define RGB_MATRIX_SPLIT { 35, 35 }
+#    define RGB_MATRIX_SPLIT { 29, 35 }
 #    define RGB_DISABLE_WHEN_USB_SUSPENDED true
 #    define RGBLIGHT_SLEEP
 #    define RGB_MATRIX_LED_PROCESS_LIMIT (DRIVER_LED_TOTAL + 4) / 5 // max leds processed per animation task
